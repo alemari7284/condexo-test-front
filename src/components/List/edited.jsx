@@ -1,5 +1,6 @@
 import React from 'react'
 import { TextField } from '@mui/material'
+import Button from '@mui/material/Button'
 
 export default function Edited({
   id,
@@ -11,7 +12,7 @@ export default function Edited({
   handleCancel,
 }) {
   return (
-    <div>
+    <div className="edited">
       <TextField
         id={title}
         label={title}
@@ -21,8 +22,12 @@ export default function Edited({
         defaultValue={value}
         onChange={handleChange}
       />
-      <button onClick={saveChanges}>Save changes</button>
-      <button onClick={handleCancel}>Cancel</button>
+      <Button variant="contained" onClick={saveChanges}>
+        Save changes
+      </Button>
+      <Button variant="outlined" onClick={handleCancel}>
+        Cancel
+      </Button>
     </div>
   )
 }

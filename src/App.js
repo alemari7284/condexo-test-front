@@ -1,4 +1,3 @@
-import Form from './components/Form/form'
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
 import Home from './components/Home/home'
@@ -8,8 +7,8 @@ import { useState, useEffect } from 'react'
 /*
  COSE RIMASTE:
  1 - Migliorare la responsiveness
- 2 - Aggiungere l'animazione
- 3 - Pulire il codice (così fa schifo)
+ 2 - Pulire il codice (così fa schifo)
+ 3 - Aggiustare il salvataggio della data di nascita
 */
 
 function App() {

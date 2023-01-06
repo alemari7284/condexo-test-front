@@ -2,23 +2,20 @@ import * as React from 'react'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import FormControl from '@mui/material/FormControl'
-import Checkbox from '@mui/material/Checkbox'
 import Grid from '@mui/material/Grid'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-import AnimatedButton from '../AnimatedButton/animatedButton'
 import Select from '@mui/material/Select'
 import SearchBar from '../Search/searchbar'
-import List from '../List/list'
 import MenuItem from '@mui/material/MenuItem'
 import InputLabel from '@mui/material/InputLabel'
 import moment from 'moment/moment'
 import { useNavigate } from 'react-router-dom'
 
-export default function SignUp({
+export default function Form({
   searchLastName,
   setSearchLastName,
   setUsersList,
@@ -59,6 +56,10 @@ export default function SignUp({
     for (let el of collection) {
       el.value = ''
     }
+    setTimeout(() => {
+      let button = document.getElementsByClassName('signupbutton')[0]
+      button.classList.remove('animate')
+    }, 1000)
   }
 
   const onSubmit = async (event) => {
@@ -68,7 +69,6 @@ export default function SignUp({
         lastName,
         email,
         password,
-        // dateofbirth,
         hometown,
         statocivile,
         taxcode,
@@ -90,6 +90,8 @@ export default function SignUp({
         taxcode,
         job,
       })
+      let button = document.getElementsByClassName('signupbutton')[0]
+      button.classList.add('animate')
       reset()
     } catch (error) {
       console.log(error.message)
@@ -237,15 +239,6 @@ export default function SignUp({
           </Grid>
           <p className={'error'}>{errors.job?.message}</p>
           <Grid item xs={12}>
-            {/* <TextField
-              required
-              fullWidth
-              name="statocivile"
-              label="Stato Civile"
-              type="text"
-              id="statocivile"
-              {...register('statocivile')}
-            /> */}
             <FormControl fullWidth>
               <InputLabel id="statocivile">Civil status</InputLabel>
               <Select
@@ -275,30 +268,14 @@ export default function SignUp({
             />
           </Grid>
           <p className={'error'}>{errors.residenza?.message}</p>
-          {/* <Grid item xs={12}>
-            <FormControlLabel
-              control={<Checkbox value="allowExtraEmails" color="primary" />}
-              label="I want to receive inspiration, marketing promotions and updates via email."
-            />
-          </Grid> */}
         </Grid>
         <Grid container style={{ marginTop: '25px' }}>
           <Grid item xs={12}>
-            {/* <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-              size={'small'}
-              className="submit"
-            >
-              Sign Up
-            </Button> */}
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              onClick={(e) => e.target.classList.add('animating')}
+              className={'signupbutton'}
             >
               Sign up
             </Button>
