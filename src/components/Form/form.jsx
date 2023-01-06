@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
-import FormControlLabel from '@mui/material/FormControlLabel'
+import FormControl from '@mui/material/FormControl'
 import Checkbox from '@mui/material/Checkbox'
 import Grid from '@mui/material/Grid'
 import { useForm } from 'react-hook-form'
@@ -16,19 +16,19 @@ import List from '../List/list'
 import MenuItem from '@mui/material/MenuItem'
 import InputLabel from '@mui/material/InputLabel'
 import moment from 'moment/moment'
+import { useNavigate } from 'react-router-dom'
 
-export default function SignUp() {
+export default function SignUp({
+  searchLastName,
+  setSearchLastName,
+  setUsersList,
+}) {
   const [getUsersClicked, setGetUsersClicked] = useState(false)
-  const [searchLastName, setSearchLastName] = useState('')
-  const [usersList, setUsersList] = useState([])
+  let navigate = useNavigate()
 
   useEffect(() => {
     getUsersClicked && document.getElementById('searchbar').scrollIntoView()
   }, [getUsersClicked])
-
-  useEffect(() => {
-    console.log('usersList', usersList)
-  }, [usersList])
 
   const schema = yup.object({
     firstName: yup.string().required(),
@@ -104,6 +104,7 @@ export default function SignUp() {
         searchLastName,
       })
       setUsersList(list.data)
+      navigate('/getusers')
     } catch (error) {
       console.log(error.message)
     }
@@ -245,18 +246,21 @@ export default function SignUp() {
               id="statocivile"
               {...register('statocivile')}
             /> */}
-            <InputLabel id="statocivile">Stato civile</InputLabel>
-            <Select
-              labelId="statocivile"
-              id="statocivile"
-              label="Stato civile"
-              {...register('statocivile')}
-            >
-              <MenuItem value={''}>Seleziona</MenuItem>
-              {opts.map((o) => {
-                return <MenuItem value={o}>{o}</MenuItem>
-              })}
-            </Select>
+            <FormControl fullWidth>
+              <InputLabel id="statocivile">Civil status</InputLabel>
+              <Select
+                labelId="statocivile"
+                id="statocivile"
+                label="Civil status"
+                fullWidth
+                displayEmpty
+                {...register('statocivile')}
+              >
+                {opts.map((o) => {
+                  return <MenuItem value={o}>{o}</MenuItem>
+                })}
+              </Select>
+            </FormControl>
           </Grid>
           <p className={'error'}>{errors.statocivile?.message}</p>
           <Grid item xs={12}>
@@ -264,21 +268,21 @@ export default function SignUp() {
               required
               fullWidth
               name="residenza"
-              label="Residenza"
+              label="Living in"
               type="text"
               id="residenza"
               {...register('residenza')}
             />
           </Grid>
           <p className={'error'}>{errors.residenza?.message}</p>
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <FormControlLabel
               control={<Checkbox value="allowExtraEmails" color="primary" />}
               label="I want to receive inspiration, marketing promotions and updates via email."
             />
-          </Grid>
+          </Grid> */}
         </Grid>
-        <Grid container spacing={2}>
+        <Grid container style={{ marginTop: '25px' }}>
           <Grid item xs={12}>
             {/* <Button
               type="submit"
@@ -290,28 +294,31 @@ export default function SignUp() {
             >
               Sign Up
             </Button> */}
-            <button
-              // className="btn"
+            <Button
               type="submit"
+              fullWidth
+              variant="contained"
               onClick={(e) => e.target.classList.add('animating')}
             >
               Sign up
-            </button>
+            </Button>
+            <Button
+              style={{ marginTop: '10px' }}
+              fullWidth
+              variant="contained"
+              color="success"
+              onClick={() => {
+                setGetUsersClicked(!getUsersClicked)
+              }}
+            >
+              Get User
+            </Button>
           </Grid>
         </Grid>
       </form>
-      <button
-        onClick={() => {
-          setGetUsersClicked(!getUsersClicked)
-        }}
-      >
-        Get User
-      </button>
+
       {getUsersClicked && (
         <SearchBar getUsers={getUsers} setSearchLastName={setSearchLastName} />
-      )}
-      {usersList.length > 0 && (
-        <List usersList={usersList} setUsersList={setUsersList} />
       )}
     </div>
   )

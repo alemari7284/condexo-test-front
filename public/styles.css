@@ -148,7 +148,7 @@ body {
 }
 
 .editButton {
-  margin-left: 2rem;
+  margin-left: 2rem !important;
   visibility: hidden;
 }
 

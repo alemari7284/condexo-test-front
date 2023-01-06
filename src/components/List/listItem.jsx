@@ -21,8 +21,6 @@ export default function ListItem({
   }, [object])
 
   function handleEdit(e) {
-    let element = e.target
-    // console.log(element)
     console.log(index)
     console.log(title)
     setEdit(!edit)
@@ -49,7 +47,6 @@ export default function ListItem({
       )
       console.log(result)
       const list = await axios.post('http://localhost:3001/search', {})
-
       setUsersList(list.data)
     } catch (error) {
       console.log(error.message)

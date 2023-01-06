@@ -19,7 +19,9 @@ export default function List({ usersList, setUsersList }) {
           } = user
           return (
             <div>
-              <h3>#{i + 1}</h3>
+              <h3 style={{ backgroundColor: 'lightblue', borderRadius: '5px' }}>
+                #{i + 1}
+              </h3>
               <ul
                 style={{
                   listStyleType: 'disclosure-closed',
