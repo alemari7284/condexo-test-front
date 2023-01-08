@@ -5,12 +5,12 @@ export default function GetUsers({ usersList, setUsersList }) {
   return (
     <div>
       {usersList.length > 0 ? (
-        <>
-          <h1 style={{ textAlign: 'center' }}>Users found</h1>
+        <div className="resultsList">
+          <h1 className="resultTitle">Users found</h1>
           <List usersList={usersList} setUsersList={setUsersList} />
-        </>
+        </div>
       ) : (
-        <h1>No users found</h1>
+        <h1 className="resultTitle">No users found</h1>
       )}
     </div>
   )

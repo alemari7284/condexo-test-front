@@ -4,7 +4,7 @@ import ListItem from './listItem'
 
 export default function List({ usersList, setUsersList }) {
   return (
-    <div style={{ textAlign: 'left' }}>
+    <div>
       {usersList?.length > 0 &&
         usersList.map((user, i) => {
           const {
@@ -16,20 +16,12 @@ export default function List({ usersList, setUsersList }) {
             statocivile,
             taxcode,
             job,
+            residenza,
           } = user
           return (
             <div>
-              <h3 style={{ backgroundColor: 'lightblue', borderRadius: '5px' }}>
-                #{i + 1}
-              </h3>
-              <ul
-                style={{
-                  listStyleType: 'disclosure-closed',
-                  textAlign: 'left',
-                }}
-                key={i}
-                id={i}
-              >
+              <h3 className="recordId">#{i + 1}</h3>
+              <ul key={i} id={i} className="ulFields">
                 <React.Fragment>
                   <ListItem
                     value={firstName}
@@ -92,6 +84,14 @@ export default function List({ usersList, setUsersList }) {
                     index={i}
                     cl={'editable'}
                     title={'job'}
+                    usersList={usersList}
+                    setUsersList={setUsersList}
+                  ></ListItem>
+                  <ListItem
+                    value={residenza}
+                    index={i}
+                    cl={'editable'}
+                    title={'residenza'}
                     usersList={usersList}
                     setUsersList={setUsersList}
                   ></ListItem>

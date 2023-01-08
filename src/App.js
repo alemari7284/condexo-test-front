@@ -4,24 +4,9 @@ import Home from './components/Home/home'
 import GetUsers from './components/GetUsers/getUsers'
 import { useState, useEffect } from 'react'
 
-/*
- COSE RIMASTE:
- 1 - Migliorare la responsiveness
- 2 - Pulire il codice (così fa schifo)
- 3 - Aggiustare il salvataggio della data di nascita
-*/
-
 function App() {
   const [searchLastName, setSearchLastName] = useState('')
   const [usersList, setUsersList] = useState([])
-
-  useEffect(() => {
-    console.log('usersList', usersList)
-  }, [usersList])
-
-  useEffect(() => {
-    console.log('searchLastName', searchLastName)
-  }, [searchLastName])
 
   return (
     <Routes>

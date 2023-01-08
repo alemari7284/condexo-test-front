@@ -1,9 +1,10 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import Editable from './editable'
-import TextField from '@mui/material/TextField'
 import Edited from './edited'
 import axios from 'axios'
+import { Grid } from '@mui/material'
+import moment from 'moment/moment'
 
 export default function ListItem({
   value,
@@ -37,9 +38,12 @@ export default function ListItem({
   async function saveChanges() {
     let updatedDocument = Object.assign(usersList[index])
     for (let [k, v] of Object.entries(object)) {
-      updatedDocument[k] = v
+      if (k == 'dateofbirth') {
+        let fDate = v
+        fDate = moment(fDate).format('D-MM-YYYY')
+        updatedDocument[k] = fDate
+      } else updatedDocument[k] = v
     }
-    console.log('updatedDocument', updatedDocument)
     try {
       const result = await axios.put(
         'http://localhost:3001/update',
@@ -56,26 +60,30 @@ export default function ListItem({
   }
 
   return (
-    <li className={cl}>
-      {!edit ? (
-        <Editable
-          value={value}
-          index={index}
-          handleEdit={handleEdit}
-          title={title}
-        ></Editable>
-      ) : (
-        <React.Fragment>
-          <Edited
-            value={value}
-            title={title}
-            type={title == 'dateofbirth' ? 'date' : 'text'}
-            handleChange={handleChange}
-            handleCancel={handleCancel}
-            saveChanges={saveChanges}
-          ></Edited>
-        </React.Fragment>
-      )}
-    </li>
+    <Grid container>
+      <Grid item xs={12}>
+        <li className={cl}>
+          {!edit ? (
+            <Editable
+              value={value}
+              index={index}
+              handleEdit={handleEdit}
+              title={title}
+            />
+          ) : (
+            <React.Fragment>
+              <Edited
+                value={value}
+                title={title}
+                type={title == 'dateofbirth' ? 'date' : 'text'}
+                handleChange={handleChange}
+                handleCancel={handleCancel}
+                saveChanges={saveChanges}
+              ></Edited>
+            </React.Fragment>
+          )}
+        </li>
+      </Grid>
+    </Grid>
   )
 }

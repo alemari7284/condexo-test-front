@@ -4,7 +4,7 @@ import Button from '@mui/material/Button'
 export default function Editable({ value, index, handleEdit, title }) {
   return (
     <React.Fragment>
-      <span style={{ fontWeight: 'bold', marginRight: '12px' }}>{title}:</span>
+      <span className="line">{title}:</span>
       {value}
       <Button
         onClick={(e) => {

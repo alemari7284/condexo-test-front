@@ -1,6 +1,5 @@
 import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
-import { Link } from 'react-router-dom'
 import Button from '@mui/material/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
@@ -20,15 +19,8 @@ export default function SearchBar({ setSearchLastName, getUsers }) {
             type={'text'}
             onChange={(e) => setSearchLastName(e.target.value)}
           />
-          <Button
-            style={{
-              backgroundColor: 'mediumturquoise',
-              marginTop: '8px',
-              color: 'white',
-            }}
-            onClick={getUsers}
-          >
-            <span style={{ marginRight: '5px' }}>Search</span>
+          <Button className="searchBar" onClick={getUsers}>
+            <span className="searchSpan">Search</span>
             <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
           </Button>
         </Grid>

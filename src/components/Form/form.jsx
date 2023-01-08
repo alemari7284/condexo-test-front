@@ -41,6 +41,7 @@ export default function Form({
     taxcode: yup.string().min(16).required(),
     job: yup.string().required(),
     statocivile: yup.string().required(),
+    residenza: yup.string().required(),
   })
 
   const {
@@ -63,6 +64,7 @@ export default function Form({
   }
 
   const onSubmit = async (event) => {
+    console.log(event)
     try {
       const {
         firstName,
@@ -73,6 +75,7 @@ export default function Form({
         statocivile,
         taxcode,
         job,
+        residenza,
       } = event
 
       let { dateofbirth } = event
@@ -89,8 +92,9 @@ export default function Form({
         statocivile,
         taxcode,
         job,
+        residenza,
       })
-      let button = document.getElementsByClassName('signupbutton')[0]
+      let button = document.getElementById('signupbutton')
       button.classList.add('animate')
       reset()
     } catch (error) {
@@ -109,6 +113,7 @@ export default function Form({
       navigate('/getusers')
     } catch (error) {
       console.log(error.message)
+      return error
     }
     reset()
   }
@@ -126,7 +131,7 @@ export default function Form({
     >
       <h1>Form di registrazione</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Grid container spacing={1} style={{ justifyContent: 'center' }}>
+        <Grid container spacing={1}>
           <Grid item xs={12}>
             <TextField
               name="firstName"
@@ -247,6 +252,7 @@ export default function Form({
                 label="Civil status"
                 fullWidth
                 displayEmpty
+                defaultValue={''}
                 {...register('statocivile')}
               >
                 {opts.map((o) => {
@@ -275,7 +281,7 @@ export default function Form({
               type="submit"
               fullWidth
               variant="contained"
-              className={'signupbutton'}
+              id="signupbutton"
             >
               Sign up
             </Button>

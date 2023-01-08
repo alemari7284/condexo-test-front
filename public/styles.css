@@ -7,6 +7,10 @@ body {
   margin: 0;
 }
 
+.resultTitle {
+  text-align: center;
+}
+
 .error {
   color: red;
   text-decoration: underline;
@@ -31,6 +35,26 @@ body {
   margin: 5px auto;
 }
 
+.line {
+  font-weight: bold;
+  margin-right: 12px;
+}
+
+.recordId {
+  background-color: lightblue;
+  border-radius: 5px;
+}
+
+/* style={{
+  listStyleType: 'disclosure-closed',
+  textAlign: 'left',
+}} */
+
+.recordList {
+  list-style-type: disclosure-closed;
+  text-align: left;
+}
+
 /* Add an animation to the button */
 .signupbutton.animate {
   animation: flyaway 1s;
@@ -40,5 +64,30 @@ body {
   100% {
     transform: translate(-50%, -50%) rotate(360deg);
     opacity: 0;
+  }
+}
+
+.searchBar {
+  background-color: mediumturquoise !important;
+  margin-top: 8px !important;
+  color: white !important;
+}
+
+.searchSpan {
+  margin-right: 5px;
+}
+
+@media all and (max-width: 475px) {
+  .editable {
+    flex-direction: column;
+  }
+  .edited {
+    flex-direction: column;
+  }
+  .editButton {
+    margin-left: 0px !important;
+  }
+  .ulFields {
+    padding-left: 10px;
   }
 }
