@@ -1,5 +1,4 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
 import ListItem from './listItem'
 
 export default function List({ usersList, setUsersList }) {

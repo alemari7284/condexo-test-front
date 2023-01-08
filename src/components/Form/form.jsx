@@ -24,7 +24,10 @@ export default function Form({
   let navigate = useNavigate()
 
   useEffect(() => {
-    getUsersClicked && document.getElementById('searchbar').scrollIntoView()
+    getUsersClicked &&
+      document
+        .getElementById('searchbar')
+        .scrollIntoView({ behavior: 'smooth' })
   }, [getUsersClicked])
 
   const schema = yup.object({
@@ -64,7 +67,6 @@ export default function Form({
   }
 
   const onSubmit = async (event) => {
-    console.log(event)
     try {
       const {
         firstName,
@@ -94,7 +96,7 @@ export default function Form({
         job,
         residenza,
       })
-      let button = document.getElementById('signupbutton')
+      let button = document.getElementsByClassName('signupbutton')[0]
       button.classList.add('animate')
       reset()
     } catch (error) {
@@ -281,7 +283,7 @@ export default function Form({
               type="submit"
               fullWidth
               variant="contained"
-              id="signupbutton"
+              className="signupbutton"
             >
               Sign up
             </Button>

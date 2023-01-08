@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Editable from './editable'
 import Edited from './edited'
 import axios from 'axios'
@@ -17,13 +17,7 @@ export default function ListItem({
   const [edit, setEdit] = useState(false)
   const [object, setObject] = useState({})
 
-  useEffect(() => {
-    Object.keys(object).length > 0 && console.log(object)
-  }, [object])
-
   function handleEdit(e) {
-    console.log(index)
-    console.log(title)
     setEdit(!edit)
   }
 
@@ -49,7 +43,6 @@ export default function ListItem({
         'http://localhost:3001/update',
         updatedDocument,
       )
-      console.log(result)
       const list = await axios.post('http://localhost:3001/search', {})
       setUsersList(list.data)
     } catch (error) {

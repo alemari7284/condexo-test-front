@@ -2,7 +2,7 @@ import './App.css'
 import { Routes, Route } from 'react-router-dom'
 import Home from './components/Home/home'
 import GetUsers from './components/GetUsers/getUsers'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 function App() {
   const [searchLastName, setSearchLastName] = useState('')

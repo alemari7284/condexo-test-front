@@ -45,11 +45,6 @@ body {
   border-radius: 5px;
 }
 
-/* style={{
-  listStyleType: 'disclosure-closed',
-  textAlign: 'left',
-}} */
-
 .recordList {
   list-style-type: disclosure-closed;
   text-align: left;
